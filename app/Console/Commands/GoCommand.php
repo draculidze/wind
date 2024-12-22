@@ -27,6 +27,22 @@ class GoCommand extends Command
      */
     public function handle()
     {
+        $dataPost = [
+            'author' => 'Dmitry2',
+            'title' => 'Новый пост2',
+            'category' => 'Не интересное',
+            'tag' => 'Жарко',
+            'image_path' => 'new2.jpg',
+            'description' => 'без описания2',
+            'published_at' => '2024-12-23',
+            'likes' => 10,
+            'views' => 190,
+            'status' => 1,
+            'is_published' => 1,
+
+        ];
+        $post = Post::create($dataPost);
+
         //dd(11111111111);
         /*$data = [
             'birthed_at' => '2024-10-03',
@@ -44,7 +60,8 @@ class GoCommand extends Command
         //$profile->update(['phone' => '1234567890']);
         //dd($profile);
 
-        $profile->delete();
+        if($profile)
+            $profile->delete();
         dd("profile is deleted");
     }
 }
