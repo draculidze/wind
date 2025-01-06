@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('author')->index();
-            $table->string('title')->unique();
-            $table->string('category');
-            $table->text('tag');
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->string('title');
+            $table->string('slug')->unique()->index();
+            $table->foreignId('category_id')->index()->constrained('categories');
             $table->text('image_path')->nullable();
             $table->text('description')->nullable();
             $table->dateTime('published_at')->nullable();
-            $table->unsignedInteger('likes')->nullable();
-            $table->unsignedInteger('views')->nullable();
             $table->unsignedSmallInteger('status')->default(1);
             $table->boolean('is_published')->default(true);
             $table->timestamps();

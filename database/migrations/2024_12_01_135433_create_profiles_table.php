@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('description')->nullable();
             $table->string('gender')->default('male');
-            $table->string('user');
+            $table->foreignId('user_id')->index()->constrained('users');
         });
     }
 
