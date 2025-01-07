@@ -22,6 +22,7 @@ return new class extends Migration
             $table->dateTime('published_at')->nullable();
             $table->unsignedSmallInteger('status')->default(1);
             $table->boolean('is_published')->default(true);
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

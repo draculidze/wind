@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $user = [
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('123'),
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $usr = User::firstOrCreate([
+            'email' => $user['email'],
+        ], $user);
+
+        //$usr->profile()->create(); // убрано, т.к. связь не один к одному
+        Profile::create([
+            'user_id' => $usr->id,
+            'login' => 'admin',
+        ]);
+
+        $this->call([
+            CategorySeeder::class,
+            TagSeeder::class,
+            PostSeeder::class,
         ]);
     }
 }
