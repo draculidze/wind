@@ -19,10 +19,11 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'profile_id' => Profile::first()->id,
+            //'profile_id' => Profile::first()->id,
             'title' => fake()->realTextBetween(20, 150),
             'slug' => fake()->slug,
-            'category_id' => Category::inRandomOrder()->first()->id,
+            //'category_id' => Category::inRandomOrder()->first()->id,
+            'category_id' => Category::factory(),
             'image_path' => fake()->imageUrl,
             'description' => fake()->realTextBetween(100, 300),
             'content' => fake()->realTextBetween(300, 600),

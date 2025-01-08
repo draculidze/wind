@@ -28,4 +28,14 @@ class Post extends Model
     {
         return $this->belongsToMany(Profile::class, 'post_profile_likes');
     }
+
+    public function viewedByProfiles(): BelongsToMany
+    {
+       return $this->belongsToMany(Profile::class, 'post_profile_views');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

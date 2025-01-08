@@ -45,7 +45,8 @@ class GoCommand extends Command
         //$profile = Profile::first();
         //dd($profile->likedPosts->toArray());
 
-        $post = Post::first();
-        dd($post->likedByProfiles->toArray());
+        $post = Post::find(10);
+        dd($post->toArray(), $post->likedByProfiles->toArray());
+        //dd($post->likedByProfiles->toArray());
     }
 }
