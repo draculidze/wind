@@ -39,11 +39,14 @@ class UserSeeder extends Seeder
                         ->hasComments(2, [ // добавляем комментарии к посту
                             'profile_id' => $profile->id,
                         ])
-                        ->for(Category::inRandomOrder()->first()) // добавление категории посту
+                        //->for(Category::inRandomOrder()->first()) // добавление категории посту
                         ->hasAttached(Tag::inRandomOrder()->limit(rand(1,3))->get()) // добавляем тэги к посту
                         //->hasAttached($profile, ['profile_id' => $profile->id], 'likedByProfiles') // лайки поста от этого профиля
                         ->hasAttached($profile, ['profile_id' => $profile->id], 'viewedByProfiles') // просмотры поста от этого профиля
-                        ->create(['profile_id' => $profile->id])
+                        ->create([
+                            'profile_id' => $profile->id,
+                            'category_id' => Category::inRandomOrder()->first()
+                        ])
                         ->each(function ($post) {
                             // генерация лайков для поста случайными профилями (это 2-й вариант, первый вариант выше)
                             $likedByProfiles = Profile::inRandomOrder()->limit(rand(1,5))->pluck('id');

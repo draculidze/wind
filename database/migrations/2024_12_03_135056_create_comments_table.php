@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('profile_id')->index()->constrained('profiles');
             $table->foreignId('parent_id')->index()->nullable()->constrained('comments');
             $table->text('content')->nullable();
+
+            $table->softDeletes();
         });
     }
 

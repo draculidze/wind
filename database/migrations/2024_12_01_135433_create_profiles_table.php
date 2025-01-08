@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('gender')->default('male');
             $table->foreignId('user_id')->index()->constrained('users');
+
+            $table->softDeletes();
         });
     }
 

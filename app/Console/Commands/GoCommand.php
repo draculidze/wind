@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
@@ -29,24 +30,25 @@ class GoCommand extends Command
      */
     public function handle()
     {
-        //$user = User::first();
-        //$profiles = $user->profiles;
-        //dd($profiles);
 
-        //$category = Category::first();
-        //dd($category->posts);
+        // получение комментариев в категории (связь HasManyThrough)
+        //$category = Category::find(1);
+        //dd($category->comments);
 
-        //$post = Post::first();
-        //dd($post->category);
+        // разные способы реализации связи hasOneThrow
+        //$comment = Comment::find(1);
+        //dd($comment->post->category->toArray());
+        //dd($comment->category->toArray());
 
-        //$post = Post::first();
-        //dd($post->tags->toArray());
+        $post = Post::find(5);
+        if($post) {
+            $post->delete();
+            // $post->forceDelete();
+        } else {
+            $post = Post::withTrashed()->find(5);
+            $post->restore();
+        }
 
-        //$profile = Profile::first();
-        //dd($profile->likedPosts->toArray());
-
-        $post = Post::find(10);
-        dd($post->toArray(), $post->likedByProfiles->toArray());
-        //dd($post->likedByProfiles->toArray());
+        dd(Post::withTrashed()->find(5));
     }
 }
