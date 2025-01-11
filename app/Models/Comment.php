@@ -10,9 +10,14 @@ class Comment extends Model
 {
     protected $guarded = false;
 
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->profile->user(); // реализация связи через профиль
     }
 
     public function post(): BelongsTo

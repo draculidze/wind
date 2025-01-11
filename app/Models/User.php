@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,5 +54,15 @@ class User extends Authenticatable
     public function profiles(): HasMany
     {
         return $this->hasMany(Profile::class);
+    }
+
+    public function posts(): HasManyThrough
+    {
+        return $this->hasManyThrough(Post::class, Profile::class);
+    }
+
+    public function comments(): HasManyThrough
+    {
+        return $this->hasManyThrough(Comment::class, Profile::class);
     }
 }

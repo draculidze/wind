@@ -23,4 +23,14 @@ class Category extends Model
     {
         return $this->hasManyThrough(Comment::class, Post::class);
     }
+
+    public function tags(): HasManyThrough
+    {
+        return $this->hasManyThrough(PostTag::class, Post::class);
+    }
+
+    public function likes(): HasManyThrough
+    {
+        return $this->hasManyThrough(PostProfileLike::class, Post::class);
+    }
 }

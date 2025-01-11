@@ -32,7 +32,7 @@ class GoCommand extends Command
     {
 
         // получение комментариев в категории (связь HasManyThrough)
-        //$category = Category::find(1);
+        //$category = User::find(1);
         //dd($category->comments);
 
         // разные способы реализации связи hasOneThrow
@@ -40,15 +40,30 @@ class GoCommand extends Command
         //dd($comment->post->category->toArray());
         //dd($comment->category->toArray());
 
-        $post = Post::find(5);
-        if($post) {
-            $post->delete();
-            // $post->forceDelete();
-        } else {
-            $post = Post::withTrashed()->find(5);
-            $post->restore();
-        }
+        //$post = Post::find(1);
+        //dd($post->tags->toArray());
 
-        dd(Post::withTrashed()->find(5));
+        //$profile = Profile::find(1);
+        //dd($profile->tags->toArray());
+        //dd($profile->findTags());
+
+        //$profile = Profile::find(1);
+        //dd($profile->categories()->distinct()->get()->toArray()); // Все категории, в которых писал профиль
+
+        //$category = Category::find(1);
+        //dd($category->tags->toArray()); // все тэги с постами в этой категории
+
+        //$user = User::find(1);
+        //dd($user->posts->toArray()); // все посты пользователя через профили
+
+        //$user = User::find(1);
+        //dd($user->comments->toArray()); // все комментарии пользователя через профили
+
+        //$comment = Comment::find(1);
+        //dd($comment->user);
+
+        $category = Category::find(1);
+        dd($category->likes->toArray());
+
     }
 }
