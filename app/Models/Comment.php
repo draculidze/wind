@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Comment extends Model
 {
@@ -20,9 +21,9 @@ class Comment extends Model
         return $this->profile->user(); // реализация связи через профиль
     }
 
-    public function post(): BelongsTo
+    public function post(): MorphTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->MorphTo('commentable');
     }
 
     public function category(): BelongsTo

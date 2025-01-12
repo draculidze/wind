@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
@@ -28,10 +29,10 @@ class Profile extends Model
         return $this->hasMany(Post::class);
     }
 
-    public function likedPosts(): BelongsToMany
+    /*public function likedPosts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'post_profile_likes');
-    }
+    }*/
 
     public function viewedPosts(): BelongsToMany
     {
@@ -55,11 +56,16 @@ class Profile extends Model
         foreach ($posts as $post) {
             $tags->push($post->tags->pluck(['pivot']));
         }
-        return $tags->toArray();
+        return $tags;
     }
 
     public function categories(): HasManyThrough
     {
         return $this->hasManyThrough(Category::class, Post::class, 'profile_id', 'id', null, 'category_id');
+    }
+
+    public function likedPosts()
+    {
+        return $this->morphedByMany(Post::class, 'likeable');
     }
 }
