@@ -21,9 +21,14 @@ class Comment extends Model
         return $this->profile->user(); // реализация связи через профиль
     }
 
-    public function post(): MorphTo
+    /*public function post(): MorphTo
     {
         return $this->MorphTo('commentable');
+    }*/
+
+    public function commentable(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     public function category(): BelongsTo

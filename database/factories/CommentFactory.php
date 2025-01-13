@@ -19,9 +19,11 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'post_id' => Post::factory(),
+            //'post_id' => Post::factory(),
             'profile_id' => Profile::inRandomOrder()->first()->id,
             'parent_id' => null,
+            'commentable_type' => Post::class,
+            'commentable_id' => Post::factory(),
             'content' => fake()->realTextBetween(10, 1000),
         ];
     }

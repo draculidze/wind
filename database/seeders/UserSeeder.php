@@ -33,25 +33,31 @@ class UserSeeder extends Seeder
         ])
         ->each(function ($user) {
             Profile::factory(rand(1,3))
+                ->hasImage(1, [
+                    'imageable_type' => Profile::class,
+                    'imageable_id' => 1,
+                ])
                 ->create(['user_id' => $user->id])
                 ->each(function ($profile) {
                     Post::factory(rand(1,3))
                         ->hasComments(2, [ // добавляем комментарии к посту
                             'profile_id' => $profile->id,
+                            'commentable_type' => Post::class,
                         ])
-                        //->for(Category::inRandomOrder()->first()) // добавление категории посту
+                        ->hasImage(1)
+                        ->for(Category::inRandomOrder()->first()) // добавление категории посту
                         ->hasAttached(Tag::inRandomOrder()->limit(rand(1,3))->get()) // добавляем тэги к посту
-                        //->hasAttached($profile, ['profile_id' => $profile->id], 'likedByProfiles') // лайки поста от этого профиля
-                        ->hasAttached($profile, ['profile_id' => $profile->id], 'viewedByProfiles') // просмотры поста от этого профиля
+                        ->hasAttached($profile, ['profile_id' => $profile->id], 'likedByProfiles') // лайки поста от этого профиля
+                        //->hasAttached($profile, ['profile_id' => $profile->id], 'viewedByProfiles') // просмотры поста от этого профиля
                         ->create([
                             'profile_id' => $profile->id,
                             'category_id' => Category::inRandomOrder()->first()
-                        ])
-                        ->each(function ($post) {
+                        ]);
+                        /*->each(function ($post) {
                             // генерация лайков для поста случайными профилями (это 2-й вариант, первый вариант выше)
                             $likedByProfiles = Profile::inRandomOrder()->limit(rand(1,5))->pluck('id');
                             $post->likedByProfiles()->attach($likedByProfiles, ['created_at' => now()]);
-                        });
+                        });*/
                 });
         });
     }
