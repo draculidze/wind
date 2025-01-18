@@ -35,7 +35,6 @@ class UserSeeder extends Seeder
             Profile::factory(rand(1,3))
                 ->hasImage(1, [
                     'imageable_type' => Profile::class,
-                    'imageable_id' => 1,
                 ])
                 ->create(['user_id' => $user->id])
                 ->each(function ($profile) {
