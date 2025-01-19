@@ -2,12 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Events\Post\StoredPostEvent;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Image;
+use App\Models\Log;
 use App\Models\Post;
-use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -41,10 +37,20 @@ class GoCommand extends Command
         // php artisan make:listener Post/WriteLogListener --event=Post/StoredPostEvent
         //StoredPostEvent::dispatch(); // вызвать event
 
-        $post = Post::find(1);
-        StoredPostEvent::dispatch($post); // если вызвать event с параметром, то будет доступен в листенерах
+        //$post = Post::find(1);
+        //StoredPostEvent::dispatch($post); // если вызвать event с параметром, то будет доступен в листенерах
         // но нужно объявить в конструкторе
 
-        dd("end go");
+        //dd("end go");
+
+        //$user = User::find(2);
+        /*$user->update([
+            'name' => 'Roman'
+        ]);*/
+
+        $user3 = User::find(3);
+        $user3->delete();
+
+        dd(Log::orderBy('id', 'desc')->limit(3)->get()->toArray());
     }
 }
