@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Logable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use hasFactory, SoftDeletes;
+    use hasFactory, SoftDeletes, Logable;
 
     protected $guarded = false;
 

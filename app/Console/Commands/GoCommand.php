@@ -48,9 +48,17 @@ class GoCommand extends Command
             'name' => 'Roman'
         ]);*/
 
-        $user3 = User::find(3);
-        $user3->delete();
+        //$user3 = User::find(3);
+        //$user3->delete();
 
-        dd(Log::orderBy('id', 'desc')->limit(3)->get()->toArray());
+        //dd(Log::orderBy('id', 'desc')->limit(3)->get()->toArray());
+
+        // создание профиля через booted в trait
+        /*$user2 = User::find(2);
+        $user2->profile()->create([
+            'login' => 'test113'
+        ]);*/
+
+
     }
 }
