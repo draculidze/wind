@@ -59,6 +59,9 @@ class GoCommand extends Command
             'login' => 'test113'
         ]);*/
 
+        $user2 = User::find(2);
+        $profile = $user2->profile;
+        dd("in go command");
 
     }
 }

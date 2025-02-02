@@ -19,6 +19,13 @@ class Profile extends Model
 {
     use HasFactory, SoftDeletes, Logable;
 
+    protected static function booted(){
+        static::retrieved(function (Model $model) {
+            dump("message from retrieved Profile class");
+        });
+    }
+
+
     protected $guarded = false;
 
     public function user(): belongsTo
