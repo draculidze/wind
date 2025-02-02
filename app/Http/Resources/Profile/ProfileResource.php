@@ -19,6 +19,7 @@ class ProfileResource extends JsonResource
             'birthed_at' => $this->birthed_at,
             'registered_at' => $this->registered_at,
             'user' => $this->user,
+            'login' => $this->login
         ];
     }
 }

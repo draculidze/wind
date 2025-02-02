@@ -30,6 +30,7 @@ class PostFactory extends Factory
             'published_at' => fake()->dateTime,
             'status' => fake()->randomElement([1, 0]),
             'is_published' => fake()->boolean(),
+            'profile_id' => Profile::inRandomOrder()->first()->id,
         ];
     }
 }

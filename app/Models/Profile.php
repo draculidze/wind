@@ -17,13 +17,13 @@ use Illuminate\Support\Collection;
 
 class Profile extends Model
 {
-    use HasFactory, SoftDeletes, Logable;
+    use HasFactory, SoftDeletes;
 
-    protected static function booted(){
+    /*protected static function booted(){
         static::retrieved(function (Model $model) {
             dump("message from retrieved Profile class");
         });
-    }
+    }*/
 
 
     protected $guarded = false;

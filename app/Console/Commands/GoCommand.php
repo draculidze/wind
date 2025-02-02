@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Log;
 use App\Models\Post;
 use App\Models\User;
+use Database\Factories\PostFactory;
 use Illuminate\Console\Command;
 
 class GoCommand extends Command
@@ -59,9 +60,12 @@ class GoCommand extends Command
             'login' => 'test113'
         ]);*/
 
-        $user2 = User::find(2);
+        /*$user2 = User::find(2);
         $profile = $user2->profile;
-        dd("in go command");
+        dd("in go command");*/
+
+        $post = Post::factory()->create();
+        dd($post);
 
     }
 }

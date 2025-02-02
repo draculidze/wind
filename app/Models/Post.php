@@ -63,4 +63,9 @@ class Post extends Model
     {
         return (new PostFilter())->apply($data, $builder);
     }*/
+
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class);
+    }
 }
