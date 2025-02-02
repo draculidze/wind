@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Http\Filters\PostFilter;
 use App\Traits\Logable;
+use App\Traits\Models\Traits\HasFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use hasFactory, SoftDeletes, Logable;
+    use hasFactory, SoftDeletes, Logable, HasFilter;
 
     protected $guarded = false;
 
@@ -55,4 +58,9 @@ class Post extends Model
     {
         return $this->morphToMany(Profile::class, 'likeable');
     }
+
+    /*public function scopeFilter(Builder $builder, array $data): Builder
+    {
+        return (new PostFilter())->apply($data, $builder);
+    }*/
 }

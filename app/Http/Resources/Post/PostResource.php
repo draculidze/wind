@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Post;
 
+use App\Http\Resources\Category\CategoryResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +18,9 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'category' => $this->category,
+            'image_path' => $this->image_path,
+            'published_at' => $this->published_at,
+            'category' => CategoryResource::make($this->category)->resolve()
         ];
     }
 }
