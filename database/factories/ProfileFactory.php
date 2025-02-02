@@ -18,6 +18,12 @@ class ProfileFactory extends Factory
     {
         return [
             'login' => $this->faker->unique()->userName(),
+            'birthed_at' => $this->faker->dateTimeBetween('-50 years', '-18 years'),
+            'registered_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'address' => $this->faker->address(),
+            'phone' => $this->faker->phoneNumber(),
+            'avatar' => $this->faker->imageUrl(),
+            'gender' => $this->faker->randomElement(['male', 'female']),
         ];
     }
 }

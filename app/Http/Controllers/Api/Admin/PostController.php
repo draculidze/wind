@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Filters\PostFilter;
-use App\Http\Requests\Api\Admin\IndexRequest;
+use App\Http\Requests\Api\Admin\Post\IndexRequest;
 use App\Http\Requests\Api\Admin\Post\StoreRequest;
 use App\Http\Requests\Api\Admin\Post\UpdateRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {

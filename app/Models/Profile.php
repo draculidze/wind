@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Logable;
+use App\Traits\Models\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,7 +18,7 @@ use Illuminate\Support\Collection;
 
 class Profile extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, hasFilter;
 
     /*protected static function booted(){
         static::retrieved(function (Model $model) {
