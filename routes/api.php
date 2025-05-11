@@ -19,9 +19,11 @@ Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function ($router
     Route::post('me', [AuthController::class, 'me']);
 });
 
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
 Route::group(['middleware' => ['jwt.auth', IsAdminMiddleware::class]], function ($router) {
     Route::get('/posts', [PostController::class, 'index']);
-    Route::get('/posts/{post}', [PostController::class, 'show']);
+
     Route::post('/posts', [PostController::class, 'store']);
     Route::patch('/posts/{post}', [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);

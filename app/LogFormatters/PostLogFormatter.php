@@ -13,7 +13,7 @@ class PostLogFormatter
     {
         foreach ($logger->getHandlers() as $handler) {
             $handler->setFormatter(new LineFormatter(
-                '[%datetime%] %message%'
+                '[%datetime%] %message%' . PHP_EOL
             ));
         }
     }

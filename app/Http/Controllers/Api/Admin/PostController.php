@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Exceptions\PostException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\Post\IndexRequest;
 use App\Http\Requests\Api\Admin\Post\StoreRequest;
 use App\Http\Requests\Api\Admin\Post\UpdateRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -22,6 +24,20 @@ class PostController extends Controller
     }
 
     public function show(Post $post) {
+        $data = [
+            'id' => 2,
+            'title' => 'testik'
+        ];
+
+        $post = Post::firstOrCreate([
+            'id' => $data['id']
+        ], $data);
+
+        if(!$post->wasRecentlyCreated){
+            //throw new \Exception('already exists', Response::HTTP_BAD_REQUEST); // один из самых простых вариантов Exception
+            throw  new PostException($post, "вот он!");
+        }
+
         return PostResource::make($post)->resolve();
     }
 
