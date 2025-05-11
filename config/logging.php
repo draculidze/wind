@@ -1,5 +1,6 @@
 <?php
 
+use App\LogFormatters\PostLogFormatter;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -126,6 +127,13 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'post' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/post.log'),
+            'replace_placeholders' => true,
+            'tap' => [PostLogFormatter::class]
+        ]
 
     ],
 

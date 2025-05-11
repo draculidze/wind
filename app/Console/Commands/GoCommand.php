@@ -2,12 +2,13 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Log;
+//use App\Models\Log;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
 use Database\Factories\PostFactory;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Exception;
 
 class GoCommand extends Command
@@ -31,6 +32,9 @@ class GoCommand extends Command
      */
     public function handle()
     {
-        dump(Role::getRoles());
+        $post = Post::factory()->create();
+        //Log::channel('post')->info("this is my {id} bla bla", ['id' => $post->id]);
+        //Log::channel('post')->info("post text {post}", ['post' => $post]);
+        Log::channel('post')->info("testik");
     }
 }
