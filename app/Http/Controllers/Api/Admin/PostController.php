@@ -11,13 +11,13 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(IndexRequest $request)
+    public function index(/*IndexRequest $request*/)
     {
-        $data = $request->validated();
+        //$data = $request->validated();
 
         //$posts = Post::query();
         //$posts = (new PostFilter())->apply($data, $posts);
-        $posts = Post::filter($data)->get();
+        $posts = Post::get();
         return PostResource::collection($posts)->resolve();
     }
 

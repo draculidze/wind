@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Profile;
+use App\Models\Role;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,10 +29,12 @@ class UserSeeder extends Seeder
 
         // создаём пользователей с определенным паролем
         User::factory(10)
+        //->hasAttached(Role::inRandomOrder()->first()) // добавляем роль пользователю
         ->create([
             'password' => Hash::make('123'),
         ])
         ->each(function ($user) {
+            $user->roles()->attach(Role::inRandomOrder()->first());
             Profile::factory(rand(1,3))
                 ->hasImage(1, [
                     'imageable_type' => Profile::class,
