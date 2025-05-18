@@ -33,8 +33,11 @@ class GoCommand extends Command
     public function handle()
     {
         $post = Post::factory()->create();
+
+        $post = Post::find(2);
+        $post->delete();
         //Log::channel('post')->info("this is my {id} bla bla", ['id' => $post->id]);
         //Log::channel('post')->info("post text {post}", ['post' => $post]);
-        Log::channel('post')->info("testik");
+        //Log::channel('post')->info("testik");
     }
 }
